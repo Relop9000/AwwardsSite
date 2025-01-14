@@ -15,7 +15,7 @@ const Hero = () => {
 
   const totalVideos = 4;
 
-  const nextVideoRef = useRef(null);
+  const nextVideoRef = useRef<HTMLVideoElement>(null);
 
   const handleVideoLoad = () => {
     setLoadedVideos((prev) => prev + 1);
@@ -46,7 +46,13 @@ const Hero = () => {
           height: "100%",
           duration: 1,
           ease: "power1.inOut",
-          onStart: () => nextVideoRef.current.play(),
+          onStart: () => {
+            if (nextVideoRef.current) {
+              nextVideoRef.current.play().catch((error) => {
+                console.error("Error playing video:", error);
+              });
+            }
+          },
         });
         gsap.from("#current-video", {
           transformOrigin: "center center",

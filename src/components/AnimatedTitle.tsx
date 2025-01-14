@@ -16,7 +16,7 @@ const AnimatedTitle: React.FC<AnimatedTitleProps> = ({
   containerClass,
   className,
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {

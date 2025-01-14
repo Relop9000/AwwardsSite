@@ -5,9 +5,9 @@ import Button from "./Button";
 import AnimatedTitle from "./AnimatedTitle";
 
 const Story = () => {
-  const frameRef = useRef(null);
+  const frameRef = useRef<HTMLImageElement | null>(null);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const { clientX, clientY } = e;
     const element = frameRef.current;
 
@@ -56,6 +56,7 @@ const Story = () => {
           <AnimatedTitle
             title="the st<b>o</b>ry of <br/> a hidden real<b>m</b>"
             containerClass="mt-5 pointer-events-none mix-blend-difference relative z-10"
+            className=""
           />
 
           <div className="story-img-container">

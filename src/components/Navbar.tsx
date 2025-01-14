@@ -12,21 +12,23 @@ const Navbar = () => {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [isIndicatorActive, setIsIndicatorActive] = useState(false);
 
-  const navContainerRef = useRef(null);
-  const audioElementRef = useRef(null);
+  const navContainerRef = useRef<HTMLDivElement | null>(null);
+  const audioElementRef = useRef<HTMLAudioElement | null>(null);
 
   const { y: currentScrollY } = useWindowScroll();
 
   useEffect(() => {
-    if (currentScrollY === 0) {
-      setIsNavVisible(true);
-      navContainerRef.current.classList.remove("floating-nav");
-    } else if (currentScrollY > lastScrollY) {
-      setIsNavVisible(false);
-      navContainerRef.current.classList.add("floating-nav");
-    } else if (currentScrollY < lastScrollY) {
-      setIsNavVisible(true);
-      navContainerRef.current.classList.add("floating-nav");
+    if (navContainerRef.current) {
+      if (currentScrollY === 0) {
+        setIsNavVisible(true);
+        navContainerRef.current.classList.remove("floating-nav");
+      } else if (currentScrollY > lastScrollY) {
+        setIsNavVisible(false);
+        navContainerRef.current.classList.add("floating-nav");
+      } else if (currentScrollY < lastScrollY) {
+        setIsNavVisible(true);
+        navContainerRef.current.classList.add("floating-nav");
+      }
     }
     setLastScrollY(currentScrollY);
   }, [currentScrollY, lastScrollY]);
@@ -46,10 +48,14 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    if (isAudioPlaying) {
-      audioElementRef.current.play();
-    } else {
-      audioElementRef.current.pause();
+    if (audioElementRef.current) {
+      if (isAudioPlaying) {
+        audioElementRef.current.play().catch((error) => {
+          console.error("Error playing audio:", error);
+        });
+      } else {
+        audioElementRef.current.pause();
+      }
     }
   }, [isAudioPlaying]);
 
@@ -65,7 +71,7 @@ const Navbar = () => {
             <Button
               id="product-button"
               title="Products"
-              rightIcon={TiLocationArrow}
+              rightIcon={<TiLocationArrow />}
               containerClass="bg-blue-50 md:flex hidden items-center justify-center gap-1"
             />
           </div>
