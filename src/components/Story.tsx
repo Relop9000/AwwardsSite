@@ -54,7 +54,7 @@ const Story = () => {
 
         <div className="relative size-full">
           <AnimatedTitle
-            title="the st<b>o</b>ry of <br /> a hidden real<b>m</b>"
+            title="the st<b>o</b>ry of <br/> a hidden real<b>m</b>"
             containerClass="mt-5 pointer-events-none mix-blend-difference relative z-10"
           />
 
@@ -74,7 +74,6 @@ const Story = () => {
               </div>
             </div>
 
-            {/* for the rounded corner */}
             <svg
               className="invisible absolute size-0"
               xmlns="http://www.w3.org/2000/svg"
