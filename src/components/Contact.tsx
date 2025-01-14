@@ -1,9 +1,19 @@
 import AnimatedTitle from "./AnimatedTitle";
 import Button from "./Button";
 
-const ImageClipBox = ({ src, clipClass }) => (
+interface ImageClipBoxProps {
+  src: string;
+  clipClass: string;
+  alt?: string;
+}
+
+const ImageClipBox: React.FC<ImageClipBoxProps> = ({
+  src,
+  clipClass,
+  alt = "Image",
+}) => (
   <div className={clipClass}>
-    <img src={src} />
+    <img src={src} alt={alt} loading="lazy" />
   </div>
 );
 
@@ -43,7 +53,11 @@ const Contact = () => {
             className="special-font !md:text-[6.2rem] w-full font-zentry !text-5xl !font-black !leading-[.9]"
           />
 
-          <Button title="contact us" containerClass="mt-10 cursor-pointer" />
+          <Button
+            id="contactUs"
+            title="contact us"
+            containerClass="mt-10 cursor-pointer"
+          />
         </div>
       </div>
     </div>

@@ -8,11 +8,13 @@ gsap.registerPlugin(ScrollTrigger);
 interface AnimatedTitleProps {
   title: string;
   containerClass?: string;
+  className: string;
 }
 
 const AnimatedTitle: React.FC<AnimatedTitleProps> = ({
   title,
   containerClass,
+  className,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -39,7 +41,10 @@ const AnimatedTitle: React.FC<AnimatedTitleProps> = ({
   }, []);
 
   return (
-    <div ref={containerRef} className={clsx("animated-title", containerClass)}>
+    <div
+      ref={containerRef}
+      className={clsx("animated-title", containerClass, className)}
+    >
       {title.split("<br/>").map((line, index) => (
         <div
           key={index}

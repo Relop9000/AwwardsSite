@@ -16,9 +16,11 @@ interface BentoTiltProps {
 const BentoTilt: React.FC<BentoTiltProps> = ({ children, className = "" }) => {
   const [transformStyle, setTransformStyle] = useState("");
 
-  const itemRef = useRef(null);
+  const itemRef = useRef<HTMLDivElement | null>(null);
 
-  const handleMouseMove = (event) => {
+  const handleMouseMove = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     if (!itemRef.current) return;
 
     const { left, top, width, height } =
@@ -53,9 +55,11 @@ const BentoTilt: React.FC<BentoTiltProps> = ({ children, className = "" }) => {
 const BentoCard: React.FC<BentoCardProps> = (props) => {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [hoverOpacity, setHoverOpacity] = useState(0);
-  const hoverButtonRef = useRef(null);
+  const hoverButtonRef = useRef<HTMLDivElement | null>(null);
 
-  const handleMouseMove = (event) => {
+  const handleMouseMove = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
     if (!hoverButtonRef.current) return;
     const rect = hoverButtonRef.current.getBoundingClientRect();
 
